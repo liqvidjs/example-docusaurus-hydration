@@ -1,41 +1,24 @@
-# Website
+# Docusaurus Hydration
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+This repository shows how to use the `@liqvid/hydration` package in a Docusaurus project to read client-only values, such as light/dark mode, without encountering React hydration errors. In particular, this provides a solution for the following issues:
 
-## Installation
+- https://github.com/facebook/docusaurus/issues/7986
 
-```bash
-yarn
-```
+- https://github.com/facebook/docusaurus/issues/9629
 
-## Local Development
+## Explanation
 
-```bash
-yarn start
-```
+We have tried to do this with the minimal amount of swizzling possible. Here is a summary of what we changed from a default Docusaurus project.
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+### Code blocks
 
-## Build
+These changes are made so that Prism blocks use the correct light/dark theme on load:
 
-```bash
-yarn build
-```
+- `theme/CodeBlock`: we eject-swizzle this to ensure that the correct Prism theme is applied for light/dark mode.
+  - `Content/index.tsx`: we just need to use our patched `usePrismTheme()` instead of the built-in one
+  - `index.tsx`: this is where we add the main hydration magic
+  - `usePrismTheme.swizzle.ts`: change `useColorMode()` to Liqvid `useColorScheme()`
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+- `theme/Layout/Provider/index.tsx`: just need to add the `SyncDocusaurusColorSchemeWithLiqvid` provider
 
-## Deployment
-
-Using SSH:
-
-```bash
-USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```bash
-GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+- `theme/Root.tsx`: add a `<script>` tag with the Prism config; the `CodeBlock` hydration scripts read from this

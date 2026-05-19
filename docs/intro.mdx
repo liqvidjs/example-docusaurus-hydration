@@ -2,46 +2,50 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Demo
 
-Let's discover **Docusaurus in less than 5 minutes**.
 
-## Getting Started
+import TabItem from "@theme/TabItem";
+import { BrowserTabs, OSTabs } from "@site/src/components/MagicTabs";
 
-Get started by **creating a new site**.
+## Color scheme
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+This code sample will always have the correct color scheme on load.
 
-### What you'll need
-
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
+```ts
+console.log("Hello World!");
 ```
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+## Keyboard shortcuts
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+## Browser tabs
 
-## Start your site
+When the user first loads the page, the tab for their browser will be selected. However, if they change their selection, then that selection will be preserved on reload (which is the default Docusaurus behavior for [Tabs](https://docusaurus.io/docs/markdown-features/tabs)). To verify that this is working correctly, clear your `LocalStorage`.
 
-Run the development server:
+<BrowserTabs>
+  <TabItem value="firefox">
+    Firefox-specific content
+  </TabItem>
+  <TabItem value="chrome">
+    Chrome-specific content
+  </TabItem>
+  <TabItem value="safari">
+    Safari-specific content
+  </TabItem>
+</BrowserTabs>
 
-```bash
-cd my-website
-npm run start
-```
+## OS tabs
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
+When the user first loads the page, the tab for their operating system will be selected. However, if they change their selection, then that selection will be preserved on reload (which is the default Docusaurus behavior for [Tabs](https://docusaurus.io/docs/markdown-features/tabs)). To verify that this is working correctly, clear your `LocalStorage`.
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+<OSTabs>
+  <TabItem value="linux">
+    Linux-specific content
+  </TabItem>
+  <TabItem value="mac">
+    Mac-specific content
+  </TabItem>
+  <TabItem value="windows">
+    Windows-specific content
+  </TabItem>
+</OSTabs>

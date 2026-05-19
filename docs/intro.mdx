@@ -6,17 +6,38 @@ sidebar_position: 1
 
 
 import TabItem from "@theme/TabItem";
-import { BrowserTabs, OSTabs } from "@site/src/components/MagicTabs";
+import { BrowserTabs, Kbd, OSTabs } from "@site/src/components/MagicTabs";
 
 ## Color scheme
 
-This code sample will always have the correct color scheme on load.
+This code sample will always have the correct color scheme on page load.
 
 ```ts
 console.log("Hello World!");
 ```
 
 ## Keyboard shortcuts
+
+Provide variants for each operating system, and the correct one will be shown on page load.
+
+<table>
+  <thead>
+    <tr>
+      <td>Action</td>
+      <th>Key</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Close</td>
+      <td><Kbd osVariants={{windows: "Alt+F4", mac: "Cmd+Q", linux: "Alt+F4"}} /></td>
+    </tr> 
+    <tr>
+      <td>Save</td>
+      <td><Kbd osVariants={{windows: "Ctrl+S", mac: "Cmd+S", linux: "Ctrl+S"}} /></td>
+    </tr> 
+  </tbody>
+</table>
 
 ## Browser tabs
 
